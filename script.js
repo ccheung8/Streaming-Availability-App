@@ -59,7 +59,7 @@ window.onload = async function() {
     // (?= - positive lookahead of group
     // (?:(?:[^"]*"){2}) - finds where there aren't 2 "
     // * - unlimited times (until end of string)
-    // [^"]* - find where there is " after ,
+    // [^"]* - find where there is not " after ,
     /,(?=(?:(?:[^"]*"){2})*[^"]*$)/
   ));
   let i = 1;
