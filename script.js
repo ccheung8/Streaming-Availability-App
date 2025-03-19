@@ -12,33 +12,30 @@ class Movie {
 
 async function movieInfo() {
   let res = await axios.get("title_id_map.csv");
-  const movieInfo = csvToString(res.data);
+  const movieInfo = csvToArray(res.data);
   const searchParam = prompt("Enter a film name").toLowerCase();
-  let movieID;
-  for (let i = 0; i < movieInfo.length; i++) {
-    if (movieInfo[i].name === searchParam) {
-      // console.log(`ID for ${movieInfo[i].name} is ${movieInfo[i].id}`);
-      movieID = movieInfo[i].id;
-      break;
-    }
-  }
-  const movie = await axios.get("https://api.watchmode.com/v1/title/" + movieID + "/sources/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88");
-  console.log(movie.data);
-  if (movie.data.length) {
-    console.log("media is out on:");
-    for (let i = 0; i < movie.data.length; i++) {
-      if (movie.data[i].region === "US" && movie.data[i].type === "sub") {
-        console.log(`Film is available on ${movie.data[i].name}`);
-      }
-    }
+  let movieID = findMovie(movieInfo, searchParam);
+  if (movieID === -1) {
+    console.log("movie not found");
   } else {
-    console.log("not on streaming");
+    // const movie = await axios.get("https://api.watchmode.com/v1/title/" + movieID + "/sources/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88");
+    // console.log(movie.data);
+    // if (movie.data.length) {
+    //   console.log("media is out on:");
+    //   for (let i = 0; i < movie.data.length; i++) {
+    //     if (movie.data[i].region === "US" && movie.data[i].type === "sub") {
+    //       console.log(`Film is available on ${movie.data[i].name}`);
+    //     }
+    //   }
+    // } else {
+    //   console.log("not on streaming");
+    // }
   }
 }
 
 // dataArray[x][0] = watchmode ID
 // dataArray[x][4] = title
-function csvToString(data) {
+function csvToArray(data) {
   // turns csv data into 2d array
   const dataArray = data.split("\n").map(row => row = row.split(
     // finds , that doesn't have " before and after 
@@ -59,6 +56,22 @@ function csvToString(data) {
   }
   console.log(movieData[1].name);
   return movieData;
+}
+
+/**
+ * @definition linear search of movieInfo array for ID
+ * @param {array} movieInfo - array of movie objects
+ * @param {string} movieName - name of movie to find ID for
+ * @returns ID of movie, else -1 if not found
+ */
+function findMovie(movieInfo, movieName) {
+  for (let i = 0; i < movieInfo.length; i++) {
+    if (movieInfo[i].name === movieName) {
+      console.log(`ID for ${movieInfo[i].name} is ${movieInfo[i].id}`);
+      return movieInfo[i].id;
+    }
+  }
+  return -1
 }
 
 movieInfo();
