@@ -17,6 +17,8 @@ body {
   font-family: "Roboto", Arial, sans-serif;
   background-color: var(--primary);
   color: var(--secondary);
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
 h1 {
@@ -25,8 +27,11 @@ h1 {
 }
 
 /* NAV BAR */
+header {
+  padding-top: 16px;
+}
+
 nav {
-  margin-top: 16px;
   display: flex;
   padding: 0 48px;
   justify-content: space-between;
@@ -56,4 +61,61 @@ nav ul li a {
   gap: 24px;
   height: 100%;
   align-items: center;
+}
+
+.searchSection {
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchContainer {
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroText {
+  font-size: 5rem;
+  line-height: 80px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.heroSubText {
+  color: #d7d7d7;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.searchContainer form {
+  width: 100%;
+}
+
+.searchContainer form input {
+  width: 100%;
+  border-radius: 12px;
+  height: 46px;
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  width: calc(100% - 96px);
+  position: absolute;
+  padding: 0 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 0;
+}
+
+footer h6 {
+  font-size: 12px;
+}
+
+footer a {
+  color: var(--secondary);
 }
