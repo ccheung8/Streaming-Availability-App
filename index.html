@@ -5,10 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StreamScape</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <h1>StreamScape</h1>
+  <nav>
+    <div class="nav-left">
+      <a href="/"><img src="images/logo.png" alt="StreamScape logo"></a>
+      <h1>StreamScape</h1>
+    </div>
+    <div class="nav-right">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Trending</a></li>
+        <li><a href="#">Sign In</a></li>
+        <li><a href="#">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
   <form action="services/">
     <input type="text" id="movieSearch" name="movieSearch" placeholder="Search StreamScape...">
     <button type="submit">Search</button>
