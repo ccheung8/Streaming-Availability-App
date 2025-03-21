@@ -1,4 +1,4 @@
-// const movieSearch = document.getElementById('movieSearch');
+const movieResults = [];
 const movieInfo = [];
 
 class Movie {
@@ -23,22 +23,28 @@ async function getMovie(movieSearch) {
   // finds index of movie
   let movieIdx = findMovie(movieInfo, movieSearch.toLowerCase());
   const servicesDiv = document.getElementById('servicesTitle');
-  if (movieIdx === -1) {
-    servicesDiv.innerText = "movie not found";
-  } else {
-    const movie = await axios.get("https://api.watchmode.com/v1/title/" + movieInfo[movieIdx].id + "/sources/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88");
-    // console.log(movie.data);
-    if (movie.data.length) {
-      servicesDiv.innerText = `${movieInfo[movieIdx].name} is available on:`;
-      for (let i = 0; i < movie.data.length; i++) {
-        if (movie.data[i].region === "US" && movie.data[i].type === "sub") {
-          // console.log(`Film is available on ${movie.data[i].name}`);
-          servicesDiv.innerText += ` ${movie.data[i].name}`;
-        }
-      }
-    } else {
-      servicesDiv.innerText = "not on streaming";
+  // populates movieResults array with movies
+  if (movieIdx.length) {
+    for (let i = 0; i < movieIdx.length; i++) {
+      movieResults.push(
+        await axios.get("https://api.watchmode.com/v1/title/" + movieInfo[movieIdx[i]].id + "/details/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88&append_to_response=sources")
+      );
     }
+    console.log(movieResults);
+
+    // if (movie.data.length) {
+    //   servicesDiv.innerText = `${movieInfo[movieIdx].name} is available on:`;
+    //   for (let i = 0; i < movie.data.length; i++) {
+    //     if (movie.data[i].region === "US") {
+    //       console.log(`Film is available on ${movie.data[i].name}`);
+    //       servicesDiv.innerText += ` ${movie.data[i].name} (${movie.data[i].type}) <br>`;
+    //     }
+    //   }
+    // } else {
+    //   servicesDiv.innerText = "not on streaming";
+    // }
+  } else {
+    servicesDiv.innerText = "movie not found";
   }
 }
 
@@ -46,15 +52,17 @@ async function getMovie(movieSearch) {
  * @definition linear search of movieInfo array for Index
  * @param {array} movieInfo - array of movie objects
  * @param {string} movieName - name of movie to find ID for
- * @returns Index of movie in array, else -1 if not found
+ * @returns Array of indices of movie(s) that include movieName
  */
 function findMovie(movieInfo, movieName) {
+  const movieIdx = [];
   for (let i = 0; i < movieInfo.length; i++) {
-    if (movieInfo[i].name === movieName) {
-      return i;
+    if (movieInfo[i].name.includes(movieName)) {
+      movieIdx.push(i);
     }
   }
-  return -1
+  console.log(movieIdx);
+  return movieIdx;
 }
 
 async function loadMovies() {
@@ -77,5 +85,4 @@ async function loadMovies() {
     movieInfo.push(new Movie(dataArray[i][4].replace(/"/g, '').toLowerCase(), parseInt(dataArray[i][0].replace(/"/g, '')))); 
     i++;
   }
-  console.log(movieInfo[1].name);
 }

@@ -13,8 +13,10 @@
   <header>
     <nav>
       <div class="nav-left">
-        <a href="/"><img src="images/logo.png" alt="StreamScape logo"></a>
-        <h1>StreamScape</h1>
+        <a href="/">
+          <img src="images/logo.png" alt="StreamScape logo">
+          <h1>StreamScape</h1>
+        </a>
       </div>
       <div class="nav-right">
         <ul>
@@ -27,13 +29,21 @@
     </nav>
   </header>
 
+  <div class="blob-container">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+    <div class="blob four"></div>
+    <div class="blob five"></div>
+  </div>
+
   <section class="searchSection">
     <div class="searchContainer">
       <h2 class="heroText">Never Wonder Where Again</h2>
       <p class="heroSubText">One search, all your streaming options</p>
       <form action="services/">
         <input type="text" id="movieSearch" name="movieSearch" placeholder="Search StreamScape...">
-        <button type="submit">Search</button>
+        <button class="searchButton" type="submit">Find Streaming Services</button>
       </form>
     </div>
   </section>
@@ -47,5 +57,9 @@
     </div>
   </footer>
   <script src="script.js"></script>
+  <script>
+    // clears input form
+    document.getElementById('movieSearch').value = '';
+  </script>
 </body>
 </html>
