@@ -77,6 +77,10 @@ nav ul li a:hover {
   align-items: center;
 }
 
+#hamburger {
+  display: none;
+}
+
 .hamburgerMenu {
   display: none;
   opacity: 0;
@@ -353,6 +357,10 @@ footer a {
     font-size: 4rem;
     line-height: 4rem;
   }
+
+  .credentials {
+    width: 50%;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -365,7 +373,7 @@ footer a {
   }
 
   #hamburger {
-    display: none;
+    display: block;
     position: relative;
     height: min-content;
     z-index: 1;
@@ -461,6 +469,11 @@ footer a {
     min-height: calc(100svh - 45px - 48px);
   }
 
+  .credentials {
+    width: 80%;
+    padding: 24px;
+  }
+
   footer {
     padding: 0 16px;
     flex-direction: column;
@@ -484,6 +497,11 @@ footer a {
   .heroText {
     font-size: 3rem;
     line-height: 3rem;
+  }
+
+  .credentials {
+    width: 90%;
+    padding: 16px;
   }
 }
 
