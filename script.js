@@ -21,7 +21,6 @@ async function getMovie(movieSearch) {
   await loadMovies();
   // gets array of IDs of movies
   let movieID = findMovie(movieInfo, movieSearch.toLowerCase());
-  // console.log(movieID);
   
   // gets elements on services page
   const servicesHeader = document.getElementById('servicesHeader');
@@ -34,7 +33,6 @@ async function getMovie(movieSearch) {
     for (let i = 0; i < movieID.length; i++) {
       // gets movie info
       const movie = (await axios.get("https://api.watchmode.com/v1/title/" + movieID[i] + "/details/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88&append_to_response=sources")).data;
-      console.log(movie);
       // creates div to display item info
       const resultsItemDiv = document.createElement('div');
       // adds class to div for styling
@@ -158,10 +156,14 @@ function logOut() {
 
 const hamburgerCheck = document.getElementById('checkbox');
 
+/**
+ * @definition Function for showing and hiding the hamburger menu when clicked
+ */
 function showHamburger() {
   const hamburgerMenu = document.getElementById('hamburgerMenu')
   if (hamburgerCheck.checked) {
     hamburgerMenu.style.display = 'flex';
+    // gives time for animation to play
     setTimeout(() => {
       hamburgerMenu.style.opacity = 1;
     }, 10);
