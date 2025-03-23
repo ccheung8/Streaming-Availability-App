@@ -237,17 +237,38 @@ button:hover {
 /* SERVICES PAGE */
 .movieResults {
   padding: 32px 48px 0;
-  min-height: calc(100vh - 66px - 48px);
+  min-height: calc(100vh - 142px - 66px - 48px);
 }
 
 .movieResults h2 {
   text-align: center;
   font-size: 2.5rem;
   text-transform: capitalize;
+  display: none;
+}
+
+.loader-container {
+  position: absolute;
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-top: 5%;
+}
+
+.loader {
+  border: 16px solid var(--secondary);
+  border-top: 16px solid rgb(35, 232, 135);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
 }
 
 .resultsContainer {
-  display: grid;
+  /* display: grid; */
+  display: none;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 40px;
   row-gap: 32px;
@@ -581,5 +602,15 @@ footer a {
   }
   66% {
     transform: translate(25%, 50%) rotateX(15deg) scale(1.1);
+  }
+}
+
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -25,11 +25,11 @@ async function getMovie(movieSearch) {
   // gets elements on services page
   const servicesHeader = document.getElementById('servicesHeader');
   // populates movieResults array with movies if there are results
+  const resultsContainer = document.getElementById('resultsContainer');
   if (movieID.length) {
     // sets header for services page
     servicesHeader.innerText = `Results for ${movieSearch.toLowerCase()}`;
     // gets resultsContainer to populate with results
-    const resultsContainer = document.getElementById('resultsContainer');
     for (let i = 0; i < movieID.length; i++) {
       // gets movie info
       const movie = (await axios.get("https://api.watchmode.com/v1/title/" + movieID[i] + "/details/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88&append_to_response=sources")).data;
@@ -80,6 +80,11 @@ async function getMovie(movieSearch) {
     // if no movie IDs were found
     servicesHeader.innerText = "movie not found";
   }
+
+  // hides loader and shows info
+  document.getElementById('loaderContainer').style.display = 'none';
+  servicesHeader.style.display = 'block';
+  resultsContainer.style.display = 'grid';
 }
 
 /**
