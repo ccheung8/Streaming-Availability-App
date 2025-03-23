@@ -124,22 +124,6 @@ async function loadMovies() {
 }
 
 /**
- * @definition Checks to see if user is logged in
- */
-function isLoggedIn() {
-  if (localStorage.getItem('loggedIn') === "true") {
-    const navRight = document.getElementById('navRight');
-    navRight.innerHTML = 
-      `
-      <ul>
-        <li><a href="../account/">${localStorage.getItem('username')}</a></li>
-        <li><a href="/" onclick="logOut()">Log out</a></li>
-      </ul>
-      `;
-  }
-}
-
-/**
  * @definition Logs user out of account and resets nav bar
  */
 function logOut() {
@@ -177,8 +161,22 @@ function showHamburger() {
   }
 }
 
-// resets hamburger
-window.addEventListener('load', () => {hamburgerCheck.checked = false;});
+window.addEventListener('load', () => {
+  // resets hamburger
+  hamburgerCheck.checked = false;
+
+  // checks to see if user is logged in
+  if (localStorage.getItem('loggedIn') === "true") {
+    const navRight = document.getElementById('navRight');
+    navRight.innerHTML = 
+      `
+      <ul>
+        <li><a href="../account/">${localStorage.getItem('username')}</a></li>
+        <li><a href="/" onclick="logOut()">Log out</a></li>
+      </ul>
+      `;
+  }
+});
 // checks resize for hamburger display
 window.addEventListener('resize', () => {
   const hamburger = document.getElementById('hamburger');
