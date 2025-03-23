@@ -45,11 +45,21 @@ nav ul li {
   color: var(--secondary);
 }
 
+
 nav ul li a {
   color: var(--secondary);
   text-decoration: none;
   font-weight: 700;
   font-size: 1.5rem;
+}
+
+.active {
+  text-decoration: underline;
+}
+
+nav ul li a:hover {
+  transition: ease-in-out 250ms;
+  color: rgb(150, 150, 150);
 }
 
 .nav-left a {
@@ -223,16 +233,20 @@ input::placeholder {
 
 .serviceResults h2 {
   text-align: center;
-  margin-bottom: 32px;
   font-size: 2.5rem;
   text-transform: capitalize;
 }
 
 .resultsContainer {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 72px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 40px;
+  row-gap: 32px;
+  padding: 32px 0;
+}
+
+.resultsContainer img {
+  max-height: 450px;
 }
 
 .resultsItem {
