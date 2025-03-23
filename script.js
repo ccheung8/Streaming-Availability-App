@@ -21,7 +21,6 @@ async function getMovie(movieSearch) {
   await loadMovies();
   // gets array of IDs of movies
   let movieID = findMovie(movieInfo, movieSearch.toLowerCase());
-  
   // gets elements on services page
   const servicesHeader = document.getElementById('servicesHeader');
   // populates movieResults array with movies if there are results
@@ -32,7 +31,17 @@ async function getMovie(movieSearch) {
     // gets resultsContainer to populate with results
     for (let i = 0; i < movieID.length; i++) {
       // gets movie info
-      const movie = (await axios.get("https://api.watchmode.com/v1/title/" + movieID[i] + "/details/?apiKey=" + apiKey + "&append_to_response=sources")).data;
+      let movie;
+      try {
+         movie = (await axios.get("https://api.watchmode.com/v1/title/" + movieID[i] + "/details/?apiKey=" + apiKey + "&append_to_response=sources"));
+      } catch (error) {
+        if (error.response) {
+          console.error(`Error ${error.response.status}`);
+        } else {
+          console.error("No response received");
+        }
+        continue;
+      }
       // creates div to display item info
       const resultsItemDiv = document.createElement('div');
       // adds class to div for styling
@@ -40,13 +49,13 @@ async function getMovie(movieSearch) {
       // populates results item div
       resultsItemDiv.innerHTML += 
         `
-        <img src="${movie.posterMedium}" alt="movie poster of ${movieSearch}">
-        <h3>${movie.title}</h3>
+        <img src="${movie.data.posterMedium}" alt="movie poster of ${movieSearch}">
+        <h3>${movie.data.title}</h3>
         `;
       // checks if media is available on any sources
-      if (movie.sources.length) {
+      if (movie.data.sources.length) {
         // loops through sources
-        movie.sources.forEach((source) => {
+        movie.data.sources.forEach((source) => {
           switch (source.region) {
             // execute if region is US
             case "US":
