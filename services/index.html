@@ -18,7 +18,7 @@
           <h1>StreamScape</h1>
         </a>
       </div>
-      <div class="nav-right" id="nav-right">
+      <div class="nav-right" id="navRight">
         <ul>
           <li><a href="#">Sign In</a></li>
           <li><a href="../SignUp/">Sign Up</a></li>
@@ -50,8 +50,11 @@
   </footer>
   <script src="../script.js"></script>
   <script>
+    // checks if logged in
+    isLoggedIn();
+
     // finds movie streaming service and starts script
-    getMovie(new URLSearchParams(document.location.search).get("movieSearch"));
+    // getMovie(new URLSearchParams(document.location.search).get("movieSearch"));
   </script>
 </body>
 </html>

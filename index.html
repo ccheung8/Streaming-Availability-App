@@ -18,9 +18,9 @@
           <h1>StreamScape</h1>
         </a>
       </div>
-      <div class="nav-right" id="nav-right">
+      <div class="nav-right" id="navRight">
         <ul>
-          <li><a href="#">Sign In</a></li>
+          <li><a href="/LogIn/">Sign In</a></li>
           <li><a href="SignUp/">Sign Up</a></li>
         </ul>
       </div>
@@ -58,6 +58,9 @@
   <script>
     // clears input form
     document.getElementById('movieSearch').value = '';
+
+    // checks if user is logged in
+    isLoggedIn();
   </script>
 </body>
 </html>

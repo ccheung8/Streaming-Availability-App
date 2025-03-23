@@ -100,6 +100,9 @@ function findMovie(movieInfo, movieName) {
   return movieID;
 }
 
+/**
+ * @definition Takes csv file and loads data into an array of Movie objects
+ */
 async function loadMovies() {
   let res = await axios.get("../title_id_map.csv");
   // turns csv data into 2d array
@@ -120,4 +123,35 @@ async function loadMovies() {
     movieInfo.push(new Movie(dataArray[i][4].replace(/"/g, '').toLowerCase(), parseInt(dataArray[i][0].replace(/"/g, '')))); 
     i++;
   }
+}
+
+/**
+ * @definition Checks to see if user is logged in
+ */
+function isLoggedIn() {
+  if (localStorage.getItem('loggedIn') === "true") {
+    const navRight = document.getElementById('navRight');
+    navRight.innerHTML = 
+      `
+      <ul>
+        <li><a href="../account/">${localStorage.getItem('username')}</a></li>
+        <li><a href="/" onclick="logOut()">Log out</a></li>
+      </ul>
+      `;
+  }
+}
+
+/**
+ * @definition Logs user out of account and resets nav bar
+ */
+function logOut() {
+  localStorage.setItem("loggedIn", false);
+
+  navRight.innerHTML = 
+      `
+      <ul>
+        <li><a href="#">Sign In</a></li>
+        <li><a href="SignUp/">Sign Up</a></li>
+      </ul>
+      `;
 }

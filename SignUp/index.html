@@ -17,26 +17,34 @@
           <h1>StreamScape</h1>
         </a>
       </div>
-      <div class="nav-right" id="nav-right">
+      <div class="nav-right" id="navRight">
         <ul>
-          <li><a href="#">Sign In</a></li>
+          <li><a href="../LogIn/">Sign In</a></li>
           <li><a href="../SignUp/" class="active">Sign Up</a></li>
         </ul>
       </div>
     </nav>
   </header>
 
-  <div class="signUpContainer">
-    <div class="signUp">
+  <div class="blob-container">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+    <div class="blob four"></div>
+    <div class="blob five"></div>
+  </div>
+
+  <div class="credentialContainer">
+    <div class="credentials">
       <h1>Sign Up</h1>
-      <form action="/LogIn/">
+      <form action="/LogIn/" onsubmit="createAccount()">
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" required>
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" required>
         <label for="password">Password:</label>
         <input type="password" name="password" id="password" required>
-        <button type="submit" onclick="createAccount()">Sign Up</button>
+        <button type="submit">Sign Up</button>
       </form>
       <p>Already have an account? <a href="/LogIn/">Log in</a></p>
     </div>
@@ -62,6 +70,8 @@
       localStorage.setItem("email", email.value);
       localStorage.setItem("username", username.value);
       localStorage.setItem("password", password.value);
+      // for seeing if user is logged in
+      localStorage.setItem("loggedIn", false);
     }
   </script>
 </body>
