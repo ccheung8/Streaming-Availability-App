@@ -1,4 +1,3 @@
-const movieResults = [];
 const movieInfo = [];
 
 class Movie {
@@ -20,9 +19,10 @@ class Movie {
 async function getMovie(movieSearch) {
   // waits for csv to load to data to initialize
   await loadMovies();
-  // gets array of indices of movies
+  // gets array of IDs of movies
   let movieID = findMovie(movieInfo, movieSearch.toLowerCase());
-  console.log(movieID);
+  // console.log(movieID);
+  
   // gets elements on services page
   const servicesHeader = document.getElementById('servicesHeader');
   // populates movieResults array with movies if there are results
@@ -32,24 +32,56 @@ async function getMovie(movieSearch) {
     // gets resultsContainer to populate with results
     const resultsContainer = document.getElementById('resultsContainer');
     for (let i = 0; i < movieID.length; i++) {
-      movieResults.push(
-        await axios.get("https://api.watchmode.com/v1/title/" + movieID[i] + "/details/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88&append_to_response=sources")
-      );
-    }
-    console.log(movieResults);
+      // gets movie info
+      const movie = (await axios.get("https://api.watchmode.com/v1/title/" + movieID[i] + "/details/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88&append_to_response=sources")).data;
+      console.log(movie);
+      // creates div to display item info
+      const resultsItemDiv = document.createElement('div');
+      // adds class to div for styling
+      resultsItemDiv.classList.add('resultsItem');
+      // populates results item div
+      resultsItemDiv.innerHTML += 
+        `
+        <img src="${movie.posterMedium}" alt="movie poster of ${movieSearch}">
+        <h3>${movie.title}</h3>
+        `;
+      // creates element to list streaming service(s)
+      // const service = document.createElement('p');
+      // checks if media is available on any sources
+      if (movie.sources.length) {
+        // loops through sources
+        movie.sources.forEach((source) => {
+          switch (source.region) {
+            // execute if region is US
+            case "US":
+              switch (source.type) {
+                // execute if type is sub
+                case "sub":
+                  resultsItemDiv.innerHTML += `<p>Stream on ${source.name}</p>`;
+                  break;
 
-    // if (movie.data.length) {
-    //   servicesDiv.innerText = `${movieInfo[movieIdx].name} is available on:`;
-    //   for (let i = 0; i < movie.data.length; i++) {
-    //     if (movie.data[i].region === "US") {
-    //       console.log(`Film is available on ${movie.data[i].name}`);
-    //       servicesDiv.innerText += ` ${movie.data[i].name} (${movie.data[i].type}) <br>`;
-    //     }
-    //   }
-    // } else {
-    //   servicesDiv.innerText = "not on streaming";
-    // }
-  } else {
+                // execute if type is rent
+                case "rent":
+                  resultsItemDiv.innerHTML += `<p>Rent on ${source.name}: $${source.price}</p>`;
+                  break;
+                
+                // execute if type is buy
+                case "buy":
+                  resultsItemDiv.innerHTML += `<p>Buy on ${source.name}(${source.format}): $${source.price}</p>`;
+                  break;
+                }
+              }
+        });
+        resultsContainer.appendChild(resultsItemDiv);
+      }
+      else {
+        // if movie.services array is empty
+        resultsItemDiv.innerHTML += "<p>Not available on streaming</p>"
+      }
+    }
+  }
+  else {
+    // if no movie IDs were found
     servicesHeader.innerText = "movie not found";
   }
 }

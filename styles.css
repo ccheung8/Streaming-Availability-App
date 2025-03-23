@@ -240,6 +240,17 @@ input::placeholder {
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  max-width: 340px;
+}
+
+.resultsItem h3 {
+  text-align: center;
+  max-width: 100%;
+}
+
+.resultsItem p {
+  /* align-self: flex-start; */
+  font-size: .75rem;
 }
 
 /* FOOTER */
