@@ -10,6 +10,14 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
+  <!-- HAMBURGER MENU -->
+  <div class="hamburgerMenu" id="hamburgerMenu">
+    <ul>
+      <li><a href="/LogIn/">Sign In</a></li>
+      <li><a href="SignUp/">Sign Up</a></li>
+    </ul>
+  </div>
+
   <header>
     <nav>
       <div class="nav-left">
@@ -23,6 +31,13 @@
           <li><a href="#">Sign In</a></li>
           <li><a href="../SignUp/">Sign Up</a></li>
         </ul>
+        <div id="hamburger">
+          <div class="hamburgerIcon">
+            <input type="checkbox" id="checkbox" onclick="showHamburger()">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
       </div>
     </nav>
   </header>

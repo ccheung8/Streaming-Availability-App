@@ -9,6 +9,14 @@
   <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
 </head>
 <body>
+  <!-- HAMBURGER MENU -->
+  <div class="hamburgerMenu" id="hamburgerMenu">
+    <ul>
+      <li><a href="/LogIn/">Sign In</a></li>
+      <li><a href="SignUp/">Sign Up</a></li>
+    </ul>
+  </div>
+
   <header>
     <nav>
       <div class="nav-left">
@@ -22,6 +30,13 @@
           <li><a href="#" class="active">Sign In</a></li>
           <li><a href="../SignUp/">Sign Up</a></li>
         </ul>
+        <div id="hamburger">
+          <div class="hamburgerIcon">
+            <input type="checkbox" id="checkbox" onclick="showHamburger()">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
       </div>
     </nav>
   </header>
@@ -57,6 +72,7 @@
     </div>
   </footer>
 
+  <script src="../script.js"></script>
   <script>
     function logIn(e) {
       // gets inputted values
