@@ -62,12 +62,12 @@ async function getMovie(movieSearch) {
 
                 // execute if type is rent
                 case "rent":
-                  resultsItemDiv.innerHTML += `<p>Rent on ${source.name}: $${source.price}</p>`;
+                  resultsItemDiv.innerHTML += `<p>Rent on ${source.name} (${source.format}): $${source.price}</p>`;
                   break;
                 
                 // execute if type is buy
                 case "buy":
-                  resultsItemDiv.innerHTML += `<p>Buy on ${source.name}(${source.format}): $${source.price}</p>`;
+                  resultsItemDiv.innerHTML += `<p>Buy on ${source.name} (${source.format}): $${source.price}</p>`;
                   break;
                 }
               }

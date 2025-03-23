@@ -67,7 +67,7 @@ nav ul li a {
   align-items: center;
 }
 
-/* SEARCH SECTION */
+/* SEARCH SECTION - INDEX */
 .searchSection {
   padding-top: 9%;
   display: flex;
@@ -96,14 +96,14 @@ nav ul li a {
   text-align: center;
 }
 
-.searchContainer form {
+.movieSearchForm {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.searchContainer form input {
+.movieSearch {
   width: 100%;
   border-radius: 12px;
   height: 46px;
@@ -251,6 +251,20 @@ input::placeholder {
 .resultsItem p {
   /* align-self: flex-start; */
   font-size: .75rem;
+}
+
+/* SEARCH BAR - SERVICES */
+.searchBarContainer {
+  padding: 48px;
+}
+
+.searchBarContainer .movieSearchForm {
+  flex-direction: row;
+  gap: 8px;
+}
+
+.searchBarContainer .movieSearchForm input {
+  margin: 0;
 }
 
 /* FOOTER */
