@@ -77,6 +77,11 @@ nav ul li a:hover {
   align-items: center;
 }
 
+.hamburgerMenu {
+  display: none;
+  opacity: 0;
+}
+
 /* SEARCH SECTION - INDEX */
 .searchSection {
   padding-top: 9%;
@@ -337,6 +342,149 @@ footer h6 {
 
 footer a {
   color: var(--secondary);
+}
+
+@media only screen and (max-width: 1024px) {
+  .searchSection {
+    padding-top: 12%;
+  }
+
+  .heroText {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  nav {
+    padding: 0 16px;
+  }
+
+  .nav-right ul {
+    display: none;
+  }
+
+  #hamburger {
+    display: none;
+    position: relative;
+    height: min-content;
+    z-index: 1;
+  }
+
+  #hamburger input {
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    /* positions checkbox */
+    top: -6px;
+    right: 6px;
+    cursor: pointer;
+    /* turns checkbox invis and puts in front of hamburger */
+    opacity: 0;
+    z-index: 2;
+  }
+
+  .hamburgerIcon {
+    display: block;
+    position: relative;
+    float: right;
+    clear: right;
+  }
+
+  .hamburgerIcon span {
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 3px;
+    z-index: 1;
+    /* hamburger animation */
+    transition: transform 150ms ease-in-out;
+  }
+
+  .hamburgerIcon input + span {
+    margin-bottom: 8px;
+  }
+
+  /* rotates top bar */
+  .hamburgerIcon input:checked + span {
+    /* opacity: 1; */
+    transform: rotate(45deg) translate(3px, 6px); 
+    background: var(--secondary);
+  }
+
+  .hamburgerIcon input:checked ~ span:nth-child(3) {
+    transform: rotate(-45deg) translate(2px, -5px);
+  }
+
+  .hamburgerMenu {
+    position: absolute;
+    padding-bottom: 15%;
+    height: calc(100svh - 15%);
+    width: 100svw;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background-color: rgba(20, 20, 20, 0.5);
+    opacity: 0;
+
+    transition: opacity 150ms ease-in-out;
+  }
+
+  .hamburgerMenu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .hamburgerMenu li a {
+    color: var(--secondary);
+    text-decoration: none;
+  }
+
+  .hamburgerMenu li {
+    list-style: none;
+  }
+
+  .nav-right {
+    align-self: center;
+  }
+
+  .searchSection {
+    padding-top: 20%;
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: calc(100svh - 45px - 48px);
+  }
+
+  footer {
+    padding: 0 16px;
+    flex-direction: column;
+    padding-bottom: 8px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  nav {
+    align-items: center;
+  }
+
+  nav a img {
+    max-height: 32px;
+  }
+
+  .heroText {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
 }
 
 /* INDEX ANIMATIONS */

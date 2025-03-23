@@ -155,3 +155,35 @@ function logOut() {
       </ul>
       `;
 }
+
+const hamburgerCheck = document.getElementById('checkbox');
+
+function showHamburger() {
+  const hamburgerMenu = document.getElementById('hamburgerMenu')
+  if (hamburgerCheck.checked) {
+    hamburgerMenu.style.display = 'flex';
+    setTimeout(() => {
+      hamburgerMenu.style.opacity = 1;
+    }, 10);
+  }
+  else {
+    // gives time for animation to play
+    hamburgerMenu.style.opacity = 0;
+    setTimeout(() => {
+      hamburgerMenu.style.display = 'none';
+    }, 150);
+  }
+}
+
+// resets hamburger
+window.addEventListener('load', () => {hamburgerCheck.checked = false;});
+// checks resize for hamburger display
+window.addEventListener('resize', () => {
+  const hamburger = document.getElementById('hamburger');
+  if (window.innerWidth <= 768) {
+    hamburger.style.display = 'block'
+  }
+  else {
+    hamburger.style.display = 'none';
+  }
+});
