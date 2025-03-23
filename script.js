@@ -45,8 +45,6 @@ async function getMovie(movieSearch) {
         <img src="${movie.posterMedium}" alt="movie poster of ${movieSearch}">
         <h3>${movie.title}</h3>
         `;
-      // creates element to list streaming service(s)
-      // const service = document.createElement('p');
       // checks if media is available on any sources
       if (movie.sources.length) {
         // loops through sources
