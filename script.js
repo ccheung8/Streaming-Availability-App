@@ -32,7 +32,7 @@ async function getMovie(movieSearch) {
     // gets resultsContainer to populate with results
     for (let i = 0; i < movieID.length; i++) {
       // gets movie info
-      const movie = (await axios.get("https://api.watchmode.com/v1/title/" + movieID[i] + "/details/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88&append_to_response=sources")).data;
+      const movie = (await axios.get("https://api.watchmode.com/v1/title/" + movieID[i] + "/details/?apiKey=" + apiKey + "&append_to_response=sources")).data;
       // creates div to display item info
       const resultsItemDiv = document.createElement('div');
       // adds class to div for styling
