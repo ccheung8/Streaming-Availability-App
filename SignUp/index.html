@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamScape - Sign Up</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav-left">
+        <a href="/">
+          <img src="../images/logo.png" alt="StreamScape logo">
+          <h1>StreamScape</h1>
+        </a>
+      </div>
+      <div class="nav-right" id="nav-right">
+        <ul>
+          <li><a href="#">Sign In</a></li>
+          <li><a href="../SignUp/" class="active">Sign Up</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="signUpContainer">
+    <div class="signUp">
+      <h1>Sign Up</h1>
+      <form action="/LogIn/">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        <button type="submit" onclick="createAccount()">Sign Up</button>
+      </form>
+      <p>Already have an account? <a href="/LogIn/">Log in</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <h6>Made with blood 🩸 sweat 💦 and tears 💧 by Calvin Cheung</h6>
+    </div>
+    <div class="footer-right">
+      <h6>Streaming data powered by <a href="https://www.watchmode.com" target="_blank">Watchmode.com</a></h6>
+    </div>
+  </footer>
+
+  <script>
+    function createAccount() {
+      // gets values for created account
+      const email = document.getElementById('email');
+      const username = document.getElementById('username');
+      const password = document.getElementById('password');
+
+      // sets login info in local storage
+      localStorage.setItem("email", email.value);
+      localStorage.setItem("username", username.value);
+      localStorage.setItem("password", password.value);
+    }
+  </script>
+</body>
+</html>

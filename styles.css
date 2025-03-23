@@ -141,7 +141,7 @@ input::placeholder {
   outline: none;
 }
 
-.searchButton {
+button {
   font-family: var(--primary-font);
   font-size: .75rem;
   font-weight: 500;
@@ -153,7 +153,7 @@ input::placeholder {
   width: fit-content;
 }
 
-.searchButton:hover {
+button:hover {
   cursor: pointer;
   background-color: rgb(55, 55, 55);
 }
@@ -279,6 +279,46 @@ input::placeholder {
 
 .searchBarContainer .movieSearchForm input {
   margin: 0;
+}
+
+/* SIGN UP PAGE */
+.signUpContainer {
+  min-height: calc(100vh - 66px - 48px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUp {
+  background-color: rgb(50, 50, 50);
+  padding: 32px;
+  border-radius: 12px;
+  width: 35%;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25));
+}
+
+.signUp button {
+  border: 1px solid var(--secondary);
+  margin-top: 4px;
+}
+
+.signUp h1 {
+  margin-bottom: 32px;
+}
+
+.signUp form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.signUp p {
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.signUp a {
+  color: var(--secondary);
 }
 
 /* FOOTER */
