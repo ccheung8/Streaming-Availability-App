@@ -20,14 +20,20 @@ class Movie {
 async function getMovie(movieSearch) {
   // waits for csv to load to data to initialize
   await loadMovies();
-  // finds index of movie
-  let movieIdx = findMovie(movieInfo, movieSearch.toLowerCase());
-  const servicesDiv = document.getElementById('servicesTitle');
-  // populates movieResults array with movies
-  if (movieIdx.length) {
-    for (let i = 0; i < movieIdx.length; i++) {
+  // gets array of indices of movies
+  let movieID = findMovie(movieInfo, movieSearch.toLowerCase());
+  console.log(movieID);
+  // gets elements on services page
+  const servicesHeader = document.getElementById('servicesHeader');
+  // populates movieResults array with movies if there are results
+  if (movieID.length) {
+    // sets header for services page
+    servicesHeader.innerText = `Results for ${movieSearch.toLowerCase()}`;
+    // gets resultsContainer to populate with results
+    const resultsContainer = document.getElementById('resultsContainer');
+    for (let i = 0; i < movieID.length; i++) {
       movieResults.push(
-        await axios.get("https://api.watchmode.com/v1/title/" + movieInfo[movieIdx[i]].id + "/details/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88&append_to_response=sources")
+        await axios.get("https://api.watchmode.com/v1/title/" + movieID[i] + "/details/?apiKey=QJ1dtRDuLGfv2iErp7XSEoQbymXut7IAagrANh88&append_to_response=sources")
       );
     }
     console.log(movieResults);
@@ -44,7 +50,7 @@ async function getMovie(movieSearch) {
     //   servicesDiv.innerText = "not on streaming";
     // }
   } else {
-    servicesDiv.innerText = "movie not found";
+    servicesHeader.innerText = "movie not found";
   }
 }
 
@@ -52,17 +58,16 @@ async function getMovie(movieSearch) {
  * @definition linear search of movieInfo array for Index
  * @param {array} movieInfo - array of movie objects
  * @param {string} movieName - name of movie to find ID for
- * @returns Array of indices of movie(s) that include movieName
+ * @returns Array of IDs of movie(s) that include movieName
  */
 function findMovie(movieInfo, movieName) {
-  const movieIdx = [];
+  const movieID = [];
   for (let i = 0; i < movieInfo.length; i++) {
     if (movieInfo[i].name.includes(movieName)) {
-      movieIdx.push(i);
+      movieID.push(movieInfo[i].id);
     }
   }
-  console.log(movieIdx);
-  return movieIdx;
+  return movieID;
 }
 
 async function loadMovies() {
