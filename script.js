@@ -40,6 +40,7 @@ async function getMovie(movieSearch) {
         } else {
           console.error("No response received");
         }
+        // continues loop if error
         continue;
       }
       // creates div to display item info
