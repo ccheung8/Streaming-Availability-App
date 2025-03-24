@@ -75,8 +75,9 @@ async function getMovie(movieSearch) {
                 case "buy":
                   resultsItemDiv.innerHTML += `<p>Buy on ${source.name} (${source.format}): $${source.price}</p>`;
                   break;
-                }
+
               }
+            }
         });
         resultsContainer.appendChild(resultsItemDiv);
       }
