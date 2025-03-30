@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streaming Services</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../apikey.js"></script>
+</head>
+<body>
+  <!-- HAMBURGER MENU -->
+  <div class="hamburgerMenu" id="hamburgerMenu">
+    <ul>
+      <li><a href="/LogIn/">Sign In</a></li>
+      <li><a href="SignUp/">Sign Up</a></li>
+    </ul>
+  </div>
+
+  <header>
+    <nav>
+      <div class="nav-left">
+        <a href="/">
+          <img src="../images/logo.png" alt="StreamScape logo">
+          <h1>StreamScape</h1>
+        </a>
+      </div>
+      <div class="nav-right" id="navRight">
+        <ul>
+          <li><a href="#">Sign In</a></li>
+          <li><a href="../SignUp/">Sign Up</a></li>
+        </ul>
+        <div id="hamburger">
+          <div class="hamburgerIcon">
+            <input type="checkbox" id="checkbox" onclick="showHamburger()">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="searchBarContainer">
+    <form action="/services/" class="movieSearchForm">
+      <input type="text" id="movieSearch" class="movieSearch" name="movieSearch" placeholder="Search StreamScape...">
+      <button class="searchButton" type="submit">Find Streaming Services</button>
+    </form>
+  </div>
+
+
+  <div id="movieResults" class="movieResults">
+    <div class="loader-container" id="loaderContainer">
+      <div class="loader"></div>
+    </div>
+    <h2 id="servicesHeader"></h2>
+    <div class="resultsContainer" id="resultsContainer">
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <h6>Made with blood 🩸 sweat 💦 and tears 💧 by Calvin Cheung</h6>
+    </div>
+    <div class="footer-right">
+      <h6>Streaming data powered by <a href="https://www.watchmode.com" target="_blank">Watchmode.com</a></h6>
+    </div>
+  </footer>
+  <script src="../script.js"></script>
+  <script>
+    // finds movie streaming service and starts script
+    getMovie(new URLSearchParams(document.location.search).get("movieSearch"));
+  </script>
+</body>
+</html>
