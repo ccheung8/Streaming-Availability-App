@@ -12,13 +12,22 @@ class Movie {
   }
 }
 
+// function Movie1(name, id) {
+//   this.name = name;
+//   this.id = id
+// }
+
+// const s = new Movie1("blah", 1)
+
 /**
  * @definition gets movie from watchmode API and displays result on page
  * @param {string} movieSearch - name of movie to search for
  */
 async function getMovie(movieSearch) {
   // waits for csv to load to data to initialize
+  console.time()
   await loadMovies();
+  console.timeEnd()
   // gets array of IDs of movies
   let movieID = findMovie(movieInfo, movieSearch.toLowerCase());
   // gets elements on services page
@@ -106,6 +115,7 @@ async function getMovie(movieSearch) {
  */
 function findMovie(movieInfo, movieName) {
   const movieID = [];
+  // findAll. find(/<term>/g)
   for (let i = 0; i < movieInfo.length; i++) {
     if (movieInfo[i].name.includes(movieName)) {
       movieID.push(movieInfo[i].id);
@@ -117,8 +127,10 @@ function findMovie(movieInfo, movieName) {
 /**
  * @definition Takes csv file and loads data into an array of Movie objects
  */
-async function loadMovies() {
+async function loadMovies(search) {
+  // const firstLetter = search[0]
   let res = await axios.get("../title_id_map.csv");
+  // const res = await axios.get(`../${firstLetter}_movies.csv`);
   // turns csv data into 2d array
   const dataArray = res.data.split("\n").map(row => row = row.split(
     // finds , that doesn't have " before and after 
